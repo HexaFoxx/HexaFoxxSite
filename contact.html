@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>HexaFoxx • Contact</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("t2bJhq_YmbUN3wTis"); 
+    })();
+  </script>
+
+  <style>
+    :root{
+      --bg:#0d0f0d;
+      --panel:#1c1f1c;
+      --panel2:#242724;
+      --accent:#59d665;
+      --text:#e8fce8;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    .page{
+      opacity:0;
+      transform:translateY(8px);
+      transition:opacity .45s ease, transform .45s ease;
+    }
+    .page.show{
+      opacity:1;
+      transform:none;
+    }
+
+    .pill-nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      padding:12px 20px;
+      background:#0b0b0b;
+      position:sticky;
+      top:0;
+      z-index:30;
+    }
+
+    .logo{
+      width:44px;
+      height:44px;
+      border-radius:8px;
+      image-rendering:pixelated;
+      border:2px solid var(--accent);
+      box-shadow:0 0 10px rgba(77,187,77,.12);
+      animation:logoGlow 1.8s ease-in-out infinite;
+    }
+
+    @keyframes logoGlow{
+      0%{box-shadow:0 0 6px rgba(77,187,77,.06)}
+      50%{box-shadow:0 0 18px rgba(77,187,77,.26)}
+      100%{box-shadow:0 0 6px rgba(77,187,77,.06)}
+    }
+
+    .pill-nav-links{
+      display:flex;
+      gap:8px;
+      margin-left:6px;
+    }
+
+    .pill{
+      padding:9px 16px;
+      border-radius:999px;
+      text-decoration:none;
+      color:#fff;
+      background:transparent;
+      font-weight:600;
+      transition:all .22s;
+    }
+
+    .pill.active{
+      background:#fff;
+      color:#000;
+    }
+
+    .wrap{
+      max-width:800px;
+      margin:34px auto;
+      padding:0;
+    }
+
+    .card{
+      background:var(--panel2);
+      padding:26px;
+      border-radius:14px;
+      width:100%;
+      box-shadow:0 16px 40px rgba(0,0,0,.55);
+    }
+
+    h1{
+      color:var(--accent);
+      margin:0 0 14px;
+      font-size:26px;
+    }
+
+    .info{
+      background:var(--panel);
+      padding:14px;
+      border-radius:10px;
+      margin-bottom:16px;
+    }
+
+    label{
+      display:block;
+      font-size:14px;
+      margin-bottom:6px;
+      color:#d8f5d6;
+    }
+
+    input,textarea{
+      width:100%;
+      border-radius:8px;
+      border:1px solid #111;
+      background:#121412;
+      color:var(--text);
+      outline:none;
+      padding:10px;
+      resize:none;
+    }
+
+    .small-input{
+      width:60%;
+    }
+
+    .message-box{
+      height:160px;
+    }
+
+    button{
+      margin-top:12px;
+      padding:12px 16px;
+      border-radius:8px;
+      border:none;
+      background:var(--accent);
+      color:#032;
+      cursor:pointer;
+      font-weight:700;
+      width:140px;
+    }
+
+    footer{
+      max-width:800px;
+      margin:26px auto;
+      color:#9aa390;
+      text-align:center;
+      font-size:13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page" id="page">
+    <nav class="pill-nav" id="nav">
+      <img class="logo" src="https://mc-heads.net/avatar/HexaFoxx/60" alt="logo">
+      <div class="pill-nav-links">
+        <a class="pill" href="index.html">Home</a>
+        <a class="pill" href="about.html">About</a>
+        <a class="pill" href="skills.html">Skills</a>
+        <a class="pill active" href="contact.html">Contact</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <div class="card">
+
+        <h1>Contact / Socials</h1>
+
+        <section class="info">
+          <p><strong>Discord:</strong> <code>HexaFoxx</code></p>
+          <p><strong>Minecraft IGN:</strong> <code>HexaFoxx</code></p>
+          <p><strong>Discord Username:</strong> <code>eric_10133</code></p>
+          <p><strong>Open to:</strong> collabs, plugin work, server help, PvP lessons</p>
+        </section>
+
+        <form id="contactForm">
+          <label for="name">Your Name</label>
+          <input class="small-input" id="name" name="from_name" placeholder="Your name">
+
+          <label for="email">Email / Discord</label>
+          <input class="small-input" id="email" name="from_email" placeholder="you@example.com or Discord">
+
+          <label for="msg">Message</label>
+          <textarea class="message-box" id="msg" name="message" placeholder="What do you want to work on?"></textarea>
+
+          <button type="submit">Send</button>
+        </form>
+
+      </div>
+    </main>
+
+    <footer>Prefer DMs? Find me on Discord • HexaFoxx</footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>document.getElementById('page').classList.add('show'));
+
+    // nav fade
+    document.querySelectorAll('.pill-nav a').forEach(a=>{
+      a.addEventListener('click',e=>{
+        if(e.metaKey||e.ctrlKey) return;
+        e.preventDefault();
+        document.getElementById('page').classList.remove('show');
+        setTimeout(()=>location.href=a.href,260);
+      });
+    });
+
+    // EmailJS form send
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+
+      emailjs.sendForm(
+        "service_a19xyeo",
+        "template_e08vckk",
+        this
+      ).then(() => {
+
+        // success popup
+        const box = document.createElement('div');
+        box.style.cssText =
+          'position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#162b16;color:#cfe8c9;padding:12px 18px;border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,.6);z-index:999';
+        box.textContent = "Message sent successfully!";
+        document.body.appendChild(box);
+        setTimeout(()=>box.remove(),3200);
+
+        document.getElementById('contactForm').reset();
+
+      }, (error) => {
+
+        // error popup
+        const box = document.createElement('div');
+        box.style.cssText =
+          'position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#3b1414;color:#f7c4c4;padding:12px 18px;border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,.6);z-index:999';
+        box.textContent = "Error sending message.";
+        document.body.appendChild(box);
+        setTimeout(()=>box.remove(),3200);
+
+      });
+    });
+  </script>
+
+</body>
+</html>
