@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>HexaFoxx • Skills & Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root{--panel:#222;--accent:#6dd16d}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#0d0d0d;color:#e8f0df}
+    .page{opacity:0;transform:translateY(8px);transition:opacity .45s ease, transform .45s ease}
+    .page.show{opacity:1;transform:none}
+
+    .pill-nav{display:flex;align-items:center;gap:18px;padding:12px 20px;background:#0b0b0b;position:sticky;top:0;z-index:30}
+    .logo{width:44px;height:44px;border-radius:8px;image-rendering:pixelated;border:2px solid var(--accent);box-shadow:0 0 10px rgba(77,187,77,.12);animation:logoGlow 1.8s ease-in-out infinite}
+    @keyframes logoGlow{0%{box-shadow:0 0 6px rgba(77,187,77,.06)}50%{box-shadow:0 0 18px rgba(77,187,77,.26)}100%{box-shadow:0 0 6px rgba(77,187,77,.06)}}
+    .pill-nav-links{display:flex;gap:8px;margin-left:6px}
+    .pill{padding:9px 16px;border-radius:999px;text-decoration:none;color:#fff;background:transparent;font-weight:600;transition:all .22s}
+    .pill.active{background:#fff;color:#000}
+
+    .wrap{max-width:1000px;margin:34px auto;padding:24px;background:var(--panel);border-radius:12px;box-shadow:0 16px 40px rgba(0,0,0,.55)}
+    h1{color:var(--accent);margin:0 0 12px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .skill{background:#151515;padding:12px;border-radius:10px}
+    .meter{height:12px;background:#0f0f0f;border-radius:999px;overflow:hidden;margin-top:8px}
+    .meter > i{display:block;height:100%;background:linear-gradient(90deg,#55c55c,#2fa652);width:0%;transition:width .9s cubic-bezier(.2,.9,.2,1)}
+
+    .tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .tool{background:#0f0f0f;padding:8px 10px;border-radius:8px;font-size:14px;color:#cfe8c9}
+
+    footer{max-width:1000px;margin:26px auto;color:#9aa390;text-align:center;font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="page" id="page">
+    <nav class="pill-nav" id="nav">
+      <img class="logo" src="https://mc-heads.net/avatar/HexaFoxx/60" alt="logo">
+      <div class="pill-nav-links">
+        <a class="pill" href="index.html">Home</a>
+        <a class="pill" href="about.html">About</a>
+        <a class="pill active" href="skills.html">Skills</a>
+        <a class="pill" href="contact.html">Contact</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <h1>Skills & Tools</h1>
+      <div class="grid">
+        <div class="skill">
+          <h3>Java / Spigot / Paper</h3>
+          <div class="meter" data-val="85"><i></i></div>
+          <div class="tools"><span class="tool">Maven</span><span class="tool">Gradle</span><span class="tool">IntelliJ</span></div>
+        </div>
+
+        <div class="skill">
+          <h3>SMP PvP / Mace PvP</h3>
+          <div class="meter" data-val="45"><i></i></div>
+          <div class="tools"><span class="tool">Sword Spamming</span><span class="tool">Elytra Mace</span></div>
+        </div>
+
+        <div class="skill">
+          <h3>Resourse Packs / Commands</h3>
+          <div class="meter" data-val="88"><i></i></div>
+          <div class="tools"><span class="tool">VanillaTweeks</span><span class="tool">Command Block</span></div>
+        </div>
+
+        <div class="skill">
+          <h3>Mods / Plugin</h3>
+          <div class="meter" data-val="78"><i></i></div>
+          <div class="tools"><span class="tool">Idea Community Edition</span><span class="tool">Visual Studio</span></div>
+        </div>
+      </div>
+
+      <section style="margin-top:18px" class="skill">
+        <h3>Other skills</h3>
+        <p class="small">Server management, event scheduling, performance tuning, simple Plugin UIs, and community moderation.</p>
+      </section>
+    </main>
+
+    <footer>Tools & frameworks I use • HexaFoxx</footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      document.getElementById('page').classList.add('show');
+      // animate meters
+      document.querySelectorAll('.meter').forEach(m=>{
+        const v = parseInt(m.getAttribute('data-val')||'60',10);
+        const bar = m.querySelector('i');
+        setTimeout(()=> bar.style.width = v+'%',120);
+      });
+      // smooth nav
+      document.querySelectorAll('.pill-nav a').forEach(a=>{
+        a.addEventListener('click',e=>{
+          if(e.metaKey||e.ctrlKey) return;
+          e.preventDefault();
+          document.getElementById('nav').classList.add('fade-out');
+          document.getElementById('page').classList.remove('show');
+          setTimeout(()=> location.href=a.href,260);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
