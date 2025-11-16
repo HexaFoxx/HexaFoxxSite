@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>HexaFoxx • About</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root{--panel:#252525;--accent:#6dd16d;--accent2:#55aa55}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#0e0e0e;color:#e8f0df}
+    .page{opacity:0;transform:translateY(8px);transition:opacity .45s ease, transform .45s ease}
+    .page.show{opacity:1;transform:none}
+
+    .pill-nav{display:flex;align-items:center;gap:18px;padding:12px 20px;background:#0b0b0b;position:sticky;top:0;z-index:30}
+    .logo{width:44px;height:44px;border-radius:8px;image-rendering:pixelated;border:2px solid var(--accent);box-shadow:0 0 10px rgba(77,187,77,.12);animation:logoGlow 1.8s ease-in-out infinite}
+    @keyframes logoGlow{0%{box-shadow:0 0 6px rgba(77,187,77,.06)}50%{box-shadow:0 0 18px rgba(77,187,77,.26)}100%{box-shadow:0 0 6px rgba(77,187,77,.06)}}
+    .pill-nav-links{display:flex;gap:8px;margin-left:6px}
+    .pill{padding:9px 16px;border-radius:999px;text-decoration:none;color:#fff;background:transparent;font-weight:600;transition:all .22s}
+    .pill:hover{transform:translateY(-3px)}
+    .pill.active{background:#fff;color:#000}
+
+    .wrap{max-width:1000px;margin:34px auto;padding:24px;background:var(--panel);border-radius:12px;box-shadow:0 16px 40px rgba(0,0,0,.55)}
+    h1{color:var(--accent);margin:0 0 12px}
+    .two{display:grid;grid-template-columns:260px 1fr;gap:20px}
+    .card{background:#1b1b1b;padding:14px;border-radius:10px}
+    .mc-head{width:220px;height:220px;border-radius:12px;image-rendering:pixelated;border:4px solid var(--accent);display:block}
+
+    .bio{line-height:1.7;color:#d9e6c7}
+    .meta{margin-top:12px;background:#111;padding:10px;border-radius:8px;color:#bcd9b3}
+    ul.bul{margin:12px 0 0;padding-left:18px;color:#cfe8c9}
+    .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#132313;color:#cfe8c9;margin:6px 6px 0;font-size:13px}
+
+    footer{max-width:1000px;margin:26px auto;color:#9aa390;text-align:center;font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="page" id="page">
+    <nav class="pill-nav" id="nav">
+      <img class="logo" src="https://mc-heads.net/avatar/HexaFoxx/60" alt="logo">
+      <div class="pill-nav-links">
+        <a class="pill" href="index.html">Home</a>
+        <a class="pill active" href="about.html">About</a>
+        <a class="pill" href="skills.html">Skills</a>
+        <a class="pill" href="contact.html">Contact</a>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <h1>About HexaFoxx</h1>
+      <div class="two">
+        <div>
+          <img class="mc-head" src="https://mc-heads.net/avatar/HexaFoxx/220" alt="HexaFoxx head">
+          <div class="meta">
+            <div><strong>IGN:</strong> HexaFoxx</div>
+            <div><strong>Role:</strong> Trapper / Plugin Dev / PvP Mentor</div>
+            <div><strong>Location:</strong> Online (Discord & Servers)</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card bio">
+            <p>I'm a Minecraft enthusiast who loves everything from hardcore, PvP to Learning Betting Plugin Methods. Starting Mod Development, create plugins and datapacks, and run events for friends and community members.</p>
+
+            <p>My work blends creativity with technical problem solving: I sketch a Idea, prototype it with IDEA Community edition, then add to it. Make Resouresepacks, then Publish it in a discord if it's useful enough.</p>
+
+            <div style="margin-top:12px">
+              <span class="tag">Plugin Dev</span><span class="tag">SMP Host</span><span class="tag">PvP Coach</span><span class="tag">Builder</span>
+            </div>
+
+            <h3 style="margin-top:18px;color:#9fe99f">Career highlights</h3>
+            <ul class="bul">
+              <li>Minecraft Youtuber (Not Popular).</li>
+              <li>Made a couple plugins that Curseforge members like.</li>
+              <li>Creating Server for Commuitys and enjoying Minecraft.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <section style="margin-top:18px" class="card">
+        <h3 style="margin:0 0 10px;color:#9fe99f">Goals & Hobbies</h3>
+        <p class="small">Improve plugin performance, learn advanced Paper API features, create a distributed mini-game platform, and become a better builder.</p>
+      </section>
+    </main>
+
+    <footer>Back to <a href="index.html" style="color:var(--accent)">Home</a> • HexaFoxx</footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>document.getElementById('page').classList.add('show'));
+    document.querySelectorAll('.pill-nav a').forEach(a=>{
+      a.addEventListener('click',e=>{
+        if(e.metaKey||e.ctrlKey) return;
+        e.preventDefault();
+        document.getElementById('nav').classList.add('fade-out');
+        document.getElementById('page').classList.remove('show');
+        setTimeout(()=>location.href=a.href,260);
+      });
+    });
+  </script>
+</body>
+</html>
